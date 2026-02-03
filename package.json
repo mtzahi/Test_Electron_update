@@ -22,7 +22,7 @@
     "fastapi",
     "vite"
   ],
-  "author": "",
+  "author": "Developer <developer@example.com>",
   "license": "MIT",
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
