@@ -59,6 +59,15 @@ function UpdateNotification() {
     }
   };
 
+  const handleDownloadUpdate = async () => {
+    const api = window.electronAPI?.updates;
+    if (!api) return;
+
+    setUpdateStatus('downloading');
+    setDownloadProgress(0);
+    await api.downloadUpdate();
+  };
+
   const handleInstallUpdate = () => {
     window.electronAPI?.updates?.installUpdate();
   };
@@ -100,7 +109,17 @@ function UpdateNotification() {
 
       {updateStatus === 'available' && (
         <div className="update-status available">
-          Update {updateVersion} available - downloading...
+          <div className="download-text">
+            Version {updateVersion} is available!
+          </div>
+          <div className="update-actions">
+            <button className="install-btn" onClick={handleDownloadUpdate}>
+              Download Update
+            </button>
+            <button className="later-btn" onClick={handleDismiss}>
+              Later
+            </button>
+          </div>
         </div>
       )}
 

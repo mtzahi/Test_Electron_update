@@ -10,8 +10,15 @@ log.transports.file.level = 'info';
 autoUpdater.logger = log;
 
 // Configure auto-updater
-autoUpdater.autoDownload = true;
+autoUpdater.autoDownload = false;  // Don't download automatically - let user approve
 autoUpdater.autoInstallOnAppQuit = true;
+
+// Use generic provider to avoid GitHub API 406 errors
+// This directly fetches the update manifest from the latest release
+autoUpdater.setFeedURL({
+  provider: 'generic',
+  url: 'https://github.com/mtzahi/Test_Electron_update/releases/latest/download'
+});
 
 let mainWindow = null;
 
@@ -66,6 +73,15 @@ function setupIpcHandlers() {
     try {
       const result = await autoUpdater.checkForUpdates();
       return { status: 'checking', updateInfo: result?.updateInfo };
+    } catch (err) {
+      return { status: 'error', message: err.message };
+    }
+  });
+
+  ipcMain.handle('download-update', async () => {
+    try {
+      await autoUpdater.downloadUpdate();
+      return { status: 'downloading' };
     } catch (err) {
       return { status: 'error', message: err.message };
     }
