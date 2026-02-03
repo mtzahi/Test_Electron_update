@@ -35,7 +35,7 @@ jobs:
       - name: Build and publish (macOS)
         if: matrix.platform == 'mac'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
           # Uncomment and configure for code signing:
           # CSC_LINK: ${{ secrets.MAC_CERTIFICATE }}
           # CSC_KEY_PASSWORD: ${{ secrets.MAC_CERTIFICATE_PASSWORD }}
@@ -47,7 +47,7 @@ jobs:
       - name: Build and publish (Windows)
         if: matrix.platform == 'win'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
           # Uncomment and configure for code signing:
           # CSC_LINK: ${{ secrets.WIN_CERTIFICATE }}
           # CSC_KEY_PASSWORD: ${{ secrets.WIN_CERTIFICATE_PASSWORD }}
@@ -56,5 +56,5 @@ jobs:
       - name: Build and publish (Linux)
         if: matrix.platform == 'linux'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
         run: npm run dist:linux -- --publish always

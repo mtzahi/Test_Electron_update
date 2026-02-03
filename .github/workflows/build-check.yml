@@ -35,4 +35,4 @@ jobs:
       - name: Build Electron app (dry run)
         run: npx electron-builder --dir
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
