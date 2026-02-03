@@ -1,0 +1,147 @@
+.update-notification {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border: 1px solid #3a3a3a;
+}
+
+.update-version {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.update-version span {
+  color: #888;
+  font-size: 14px;
+}
+
+.check-updates-btn {
+  background: #4a4a4a;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.check-updates-btn:hover:not(:disabled) {
+  background: #5a5a5a;
+}
+
+.check-updates-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.update-status {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.update-status.checking,
+.update-status.dev-mode {
+  background: #3a3a3a;
+  color: #aaa;
+}
+
+.update-status.up-to-date {
+  background: #1a3a1a;
+  color: #6a6;
+}
+
+.update-status.available,
+.update-status.downloading {
+  background: #1a2a3a;
+  color: #6af;
+}
+
+.update-status.downloaded {
+  background: #2a3a1a;
+  color: #8c8;
+}
+
+.update-status.error {
+  background: #3a1a1a;
+  color: #f66;
+}
+
+.download-text {
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #3a3a3a;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4af, #6cf);
+  transition: width 0.3s ease;
+}
+
+.update-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.install-btn {
+  background: #4a8;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.install-btn:hover {
+  background: #5b9;
+}
+
+.later-btn {
+  background: transparent;
+  color: #888;
+  border: 1px solid #4a4a4a;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.later-btn:hover {
+  border-color: #5a5a5a;
+  color: #aaa;
+}
+
+.error-text {
+  margin-bottom: 8px;
+}
+
+.retry-btn {
+  background: #a44;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.retry-btn:hover {
+  background: #b55;
+}
