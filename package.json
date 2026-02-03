@@ -1,6 +1,6 @@
 {
   "name": "electron-react-fastapi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Electron + React + FastAPI desktop application",
   "main": "main.js",
   "scripts": {
