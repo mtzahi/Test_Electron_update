@@ -52,8 +52,8 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "YOUR_GITHUB_USERNAME",
-      "repo": "test_electron"
+      "owner": "mtzahi",
+      "repo": "Test_Electron_update"
     },
     "mac": {
       "category": "public.app-category.developer-tools",
