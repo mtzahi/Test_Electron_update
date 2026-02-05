@@ -7,6 +7,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     chrome: process.versions.chrome,
     electron: process.versions.electron
   },
+  getBackendPort: () => ipcRenderer.invoke('get-backend-port'),
   updates: {
     checkForUpdates: () => ipcRenderer.invoke('check-for-updates'),
     downloadUpdate: () => ipcRenderer.invoke('download-update'),

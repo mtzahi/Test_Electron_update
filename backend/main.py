@@ -41,5 +41,12 @@ async def echo_message(message: Message):
 
 
 if __name__ == "__main__":
+    import sys
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+
+    port = 8000
+    for i, arg in enumerate(sys.argv):
+        if arg == "--port" and i + 1 < len(sys.argv):
+            port = int(sys.argv[i + 1])
+
+    uvicorn.run(app, host="127.0.0.1", port=port)

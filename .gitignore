@@ -5,3 +5,6 @@ node_modules
 
 build/
 release/
+
+backend/dist/
+backend/build/

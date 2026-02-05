@@ -20,6 +20,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build backend binary
+        run: |
+          pip install -r backend/requirements.txt
+          pyinstaller backend/backend.spec --distpath backend/dist --clean -y
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:

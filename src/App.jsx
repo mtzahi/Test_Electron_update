@@ -2,30 +2,45 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import UpdateNotification from './components/UpdateNotification';
 
-const API_URL = 'http://127.0.0.1:8000';
-
 function App() {
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState(null);
   const [backendStatus, setBackendStatus] = useState('checking...');
   const [electronInfo, setElectronInfo] = useState(null);
+  const [apiUrl, setApiUrl] = useState(null);
 
   useEffect(() => {
     if (window.electronAPI) {
       setElectronInfo(window.electronAPI);
-    }
 
-    fetch(`${API_URL}/api/health`)
-      .then((res) => res.json())
-      .then((data) => setBackendStatus(data.status))
-      .catch(() => setBackendStatus('offline'));
+      window.electronAPI.getBackendPort().then((port) => {
+        if (port) {
+          const url = `http://127.0.0.1:${port}`;
+          setApiUrl(url);
+          fetch(`${url}/api/health`)
+            .then((res) => res.json())
+            .then((data) => setBackendStatus(data.status))
+            .catch(() => setBackendStatus('offline'));
+        } else {
+          setBackendStatus('offline');
+        }
+      });
+    } else {
+      // Fallback for running outside Electron (e.g. browser dev)
+      const url = 'http://127.0.0.1:8000';
+      setApiUrl(url);
+      fetch(`${url}/api/health`)
+        .then((res) => res.json())
+        .then((data) => setBackendStatus(data.status))
+        .catch(() => setBackendStatus('offline'));
+    }
   }, []);
 
   const sendMessage = async () => {
-    if (!message.trim()) return;
+    if (!message.trim() || !apiUrl) return;
 
     try {
-      const res = await fetch(`${API_URL}/api/echo`, {
+      const res = await fetch(`${apiUrl}/api/echo`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: message }),

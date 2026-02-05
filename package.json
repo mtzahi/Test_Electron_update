@@ -14,7 +14,8 @@
     "dist:mac": "npm run build && electron-builder --mac",
     "dist:win": "npm run build && electron-builder --win",
     "dist:linux": "npm run build && electron-builder --linux",
-    "release": "npm run build && electron-builder --publish always"
+    "release": "npm run build && electron-builder --publish always",
+    "build:backend": "cd backend && pip install -r requirements.txt && pyinstaller backend.spec --distpath dist --clean -y"
   },
   "keywords": [
     "electron",
@@ -49,6 +50,13 @@
       "main.js",
       "preload.js",
       "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "backend/dist/",
+        "to": ".",
+        "filter": ["backend-api", "backend-api.exe"]
+      }
     ],
     "publish": {
       "provider": "github",
